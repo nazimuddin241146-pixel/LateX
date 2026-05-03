@@ -1,0 +1,24 @@
+\chapter{Deployment Prerequisites}
+
+\section{Microsoft Office/Outlook Latest Updated Version}
+There are Outlook [ Mail Client] supported version dependency/Prerequisites with Mail Server.
+All Microsoft Office/Outlook versions should be at least Microsoft Office/Outlook  2016 or 2019 with latest public update with Office Latest Security Updates.
+Below is link to Outlook latest update resource.
+Outlook Updates List:  
+
+If Microsoft Office/Outlook is not updated, each client user will not be able to connect with Mail Server properly.
+Also, it is required to have Office Pro Plus to view the Archive Mailbox mail items in Outlook.
+
+
+\section{SSL Certificate for Mailbox Servers}
+After Deployment of Mailbox Server before Hybrid Deployment with Microsoft Office365 and Publishing it is mandatory to Implement SSL Certificate on Mail Servers for secured connectivity with the Public Internet and Office365 tenant.
+Without an SSL Certificate it is not possible to Publish the Mailbox Server to the Internet. 
+SSL Certificate only works with FQDN of Public Domain, and the required SAN entries should be like …
+Autodiscover.domain.com [ Required for Outlook Connectivity]
+mail.domain.com [ Required for OWA/ECP Hostname]
+hostname-01.domain.com [ Required for Internet facing 1st Node client Connectivity]
+hostname-02.domain.com [ Required for Internet facing 2nd Node client Connectivity]
+Hostname-N.domain.com [ Required for Internet facing Nth Node client Connectivity]
+The main advantages of an SSL certificate are enhanced data security through encryption, increased customer trust by proving website authenticity, and improved SEO rankings, as browsers and search engines favor secure connections. An SSL certificate encrypts data to prevent eavesdropping and tampering by hackers, verifies the website's identity to prevent phishing, and ensures compliance with data privacy regulations like PCI/DSS. An SSL (Secure Sockets Layer) certificate is a digital credential that enables encrypted communication between a user's browser and a web server. It ensures that sensitive data—like login credentials, payment details, and personal information—is transmitted securely and cannot be intercepted by malicious actors. SSL encrypts data during transmission, making it unreadable to unauthorized parties. This is especially critical for protecting sensitive information such as passwords, credit card numbers, and personal data.SSL certificates verify the identity of a website, helping users confirm they are interacting with a legitimate site and not a phishing scam. This builds trust and credibility. Web browsers display visual cues like a padlock icon and HTTPS in the address bar, signaling that the site is secure. These indicators reassure users and encourage engagement.SSL helps prevent phishing attacks by ensuring users are connected to the correct website. Phishing sites typically lack valid SSL certificates.Google uses HTTPS as a ranking signal. Websites with SSL certificates are more likely to rank higher in search results, increasing visibility and traffic. Securing an on-premises Exchange Server 2019 deployment mandates a robust SSL/TLS certificate strategy to encrypt communication and establish trust. The certificate must include all necessary Subject Alternative Names (SANs) encompassing every fully qualified domain name used for client access, such as autodiscover.domain.com, mail.domain.com, and the server's internal NetBIOS name. A single, trusted certificate from a public Certificate Authority is highly recommended to prevent client trust errors on mobile devices and external clients. This certificate is critical for securing services like Outlook on the web (OWA), ActiveSync, Outlook Anywhere (MAPI over HTTP), and SMTP traffic. It must be properly bound to the Internet Information Services (IIS) and other Exchange services. For internal-only deployments, an internally issued certificate from a Windows Server CA can suffice, but public CA certificates simplify management. The certificate's private key must be securely stored and accessible to the Exchange server. Regular monitoring and timely renewal before expiration are essential to avoid service disruptions. Ultimately, a correctly configured SSL certificate is foundational for protecting sensitive data in transit and ensuring a seamless, secure user experience across all access methods.
+
+
